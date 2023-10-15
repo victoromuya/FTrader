@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+{% include 'messages.html' %}
+
+<div class="main row">
+    <div class="col-lg-6 col-sm-12">
+        <div class="form-group mx-auto" style="max-height: 600px;">
+       
+            <form action="" method="post" class=" mb-0" style="max-height: 600px;">
+                        {% csrf_token %}
+                        <div class="mb-2">
+                            <label>Username</label>
+                            <input type="text" name="username" class="form-control form-control-md" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        </div>
+            
+                        <div class="pb-3 pt-4">
+                            
+                                <label>Password</label>
+                                <input type="password" name="password1" class="form-control form-control-md" id="exampleInputPassword1">
+                        </div>
+
+                        <div class="pb-3 pt-4">
+                                <label>confirm Password</label>
+                                <input type="password" name="password2" class="form-control form-control-md" id="exampleInputPassword1">
+                        </div>
+                
+                        <div class="row d-flex mx-auto" style="width:100%">
+                            <button type="submit" class="btn w-50" >Register</button>
+                            <p class="my-3 col-lg-6 col-sm-12">
+                                Already Registered?
+                                <a href="{% url 'users:signin' %}"> Login </a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            </div>
+
+    {% endblock %}
