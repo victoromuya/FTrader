@@ -5,8 +5,7 @@ from .forms import NewUserForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib import messages
-import sched, time
-import threading
+from django.contrib.auth import get_user_model
 
 
 
@@ -66,29 +65,7 @@ def register(request):
         'form':form,
     }
     return render(request,'register.html',context)
-
-# def do_something(scheduler):
-#     scheduler.enter(60, 1, do_something, (scheduler,))
-#     print("doing stuff...")
-
-
-# def my_function():
-#     numlist = []
-#     num = 100
-#     num = num - 10
-#     numlist.append(num)
-#     print(numlist)
-#     return numlist
-
-# def run_function():
     
-#     thread = threading.Timer(60.0, run_function) # 60 seconds = 1 minute
-#     thread.start()
-#     numlist = my_function()
-#     return numlist
-    
-
-
 
 @login_required
 def profile(request):
@@ -96,7 +73,7 @@ def profile(request):
     profile_obj = Profile.objects.filter(userid =current_user)
 
     amountlist = []
-    timelist = []
+    timelist = [0]
     
     
     print(amountlist)
@@ -106,7 +83,7 @@ def profile(request):
         amountlist.append(data.amount)
         
         
-    for i in range(len(amountlist)):
+    for i in range(len(amountlist) -1):
         timelist.append((i+1)*60)
     
     if request.method == 'POST':
@@ -124,3 +101,45 @@ def profile(request):
     }
     
     return render(request, 'profile.html', context)
+
+
+def adminpage(request):
+    allusers = get_user_model().objects.all()
+    
+    theusers = allusers[1:]
+  
+    if request.method == 'POST':
+        name = request.POST['username']
+        print(name)
+    
+    context = {
+        'allusers' : theusers,
+    }
+    
+    return render(request, 'adminpage.html', context)
+
+def userdash(request, id):
+    clickeduser = User.objects.get(id = id)
+  
+    profile_obj = Profile.objects.filter(userid =clickeduser)
+
+    amountlist = []
+    timelist = []
+    
+    for data in profile_obj.all():
+        amountlist.append(data.amount)
+        
+    for i in range(len(amountlist)):
+        timelist.append((i+1)*60)
+        
+    print(amountlist)
+    print(timelist)
+    
+    context = {
+        'clickeduser' : clickeduser,
+        'amountlist' : amountlist,
+        'timelist' : timelist
+    }
+    
+    return render(request, 'userdash.html', context)
+    

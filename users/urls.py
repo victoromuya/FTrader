@@ -12,4 +12,6 @@ urlpatterns = [
     path('accounts/login/', views.login_attempt, name="signin"),
     path('accounts/profile/', views.profile, name="profile"),
     path('logout/',auth_views.LogoutView.as_view(), name='logout'),
+    path('adminpage/', views.adminpage, name='adminpage'),
+    path('userdash/<int:id>', views.userdash, name='userdash')
 ]

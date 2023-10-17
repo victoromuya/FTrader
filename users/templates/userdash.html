@@ -2,8 +2,8 @@
 
 {% block content %}
 
-<div style="margin-top: 30px;">
-    <h3 class="text-center">{{data.username}}'s Dashboard</h3>
+<div>
+    <h3 class="text-center">{{clickeduser}}'s Dashboard</h3>
 </div>
 
    <h2 id="refresh-timer" style="display: none;">0</h2>
@@ -16,12 +16,12 @@
 
    <h4>{{timelist}}</h4> -->
 
-   <form action="" method="post">
+   <!-- <form action="" method="post">
     {% csrf_token %}
     <input type="text" name="amount" value="" id="inputamount" hidden>
     <input type="text" name="time" value="" id="inputtime" hidden>
     <input type="submit" value="" id="submit" hidden>
-   </form>
+   </form> -->
 
    <div class="col-md-12">
     <canvas id="myChart" width="400" height="200"></canvas>

@@ -29,4 +29,4 @@ let amount = document.getElementById('amount').innerHTML;
       document.getElementById("submit").click();
 
    
-    }, 10*1000);
+    }, 60*1000);

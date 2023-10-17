@@ -2,6 +2,10 @@ body{
     margin: 0;
  }
 
+ .navbar a{
+    color: white;
+ }
+
  .main{
      height: 90vh;
      max-width: 100%;
@@ -34,6 +38,31 @@ body{
  .btn:hover{
      background-color: rgb(22, 58, 175);
      color: white;
+ }
+
+ .admin{
+    margin-top: 30px;
+ }
+
+ .admin .container{
+    display: grid;
+    place-items: center;
+ }
+
+ .users{
+    margin-top: 50px;
+    display: flex; flex-direction: row;
+ }
+ .users a{
+    text-decoration: none;
+    margin-bottom: 5px; margin-top:5px;
+    background-color: rgb(22, 58, 175);
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    text-align: center;
+    margin: 10px;
+    min-width: 100px;
  }
 
  @media (max-width: 1024px) {
